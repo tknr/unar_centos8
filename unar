@@ -1,0 +1,21 @@
+#!/bin/bash
+export IFS=$'\n'
+
+CMDNAME=`basename $0`
+
+##
+if [ $# -ne 1 ] ; then
+	echo "Usage : ${CMDNAME} [archive file]"
+	exit 1
+fi
+
+file=$1
+ext=${file##*.}
+ext_lc=${ext,,}
+
+if [ $ext_lc = "rar" ] ; then
+	unrar x ${file} ${file%.*}/ || exit 1
+	exit 0
+fi
+
+7z x ${file} ${file%.*}/
