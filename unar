@@ -14,12 +14,14 @@ ext=${file##*.}
 ext_lc=${ext,,}
 
 if [ $ext_lc = "rar" ] ; then
-	unrar x ${file} ${file%.*}/ || exit 1
+#	unrar x ${file} ${file%.*}/ || exit 1
+	unrar x ${file} || exit 1
 	exit 0
 fi
 
 if [ $ext_lc = "zip" ] ; then
-	unzip ${file} -d ${file%.*} || exit 1
+#	unzip ${file} -d ${file%.*} || exit 1
+	unzip ${file} || exit 1
 	exit 0
 fi
 
