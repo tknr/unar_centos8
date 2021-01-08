@@ -4,9 +4,9 @@
 
 gzip  
 p7zip  
-tar 
-unrar 
-unzip 
+tar  
+unrar  
+unzip  
 
 ## install
 
