@@ -9,21 +9,21 @@ if [ $# -ne 1 ] ; then
 	exit 1
 fi
 
-for file in `find ${1} -iname "*.rar" -o -iname "*.zip" -o -iname "*.7z"` ; do
+for file in `find ${1} -iname "*.zip" -o -iname "*.rar" -o -iname "*.gz" -o -iname "*.7z" -o -iname "*.tar" -o -iname "*.tgz" -o -iname "*.bz2" -o -iname "*.xz"` ; do
 	ext=${file##*.}
 	ext_lc=${ext,,}
 
-	if [ $ext_lc = "rar" ] ; then
-		unrar x ${file}
-	fi
+	case "$ext_lc" in
+		"zip" ) unzip ${file} ;;
+		"rar" ) unrar x ${file} ;;
+		"gz" ) gzip -d ${file} ;;
+		"7z" ) 7z x ${file} ;;
+		"tar" ) tar -xvf ${file} ;;
+                "tgz" ) tar -xvf ${file} ;;
+                "bz2" ) tar -xvf ${file} ;;
+                "xz" ) tar -xvf ${file} ;;
+	esac
 
-	if [ $ext_lc = "zip" ] ; then
-		unzip ${file}
-	fi
-
-	if [ $ext_lc = "7z" ] ; then
-	        7z x ${file}
-	fi 
 done
 
 exit 0
