@@ -1,5 +1,13 @@
 # unar_centos8
 
+## requires
+
+gzip  
+p7zip  
+tar
+unrar
+unzip
+
 ## install
 
 ```
