@@ -5,24 +5,25 @@ CMDNAME=`basename $0`
 
 ##
 if [ $# -ne 1 ] ; then
-	echo "Usage : ${CMDNAME} [archive file]"
+	echo "Usage : ${CMDNAME} [directory | archive file]"
 	exit 1
 fi
 
-file=$1
-ext=${file##*.}
-ext_lc=${ext,,}
+for file in `find ${1} -iname "*.rar" -o -iname "*.zip" -o -iname "*.7z"` ; do
+	ext=${file##*.}
+	ext_lc=${ext,,}
 
-if [ $ext_lc = "rar" ] ; then
-#	unrar x ${file} ${file%.*}/ || exit 1
-	unrar x ${file} || exit 1
-	exit 0
-fi
+	if [ $ext_lc = "rar" ] ; then
+		unrar x ${file}
+	fi
 
-if [ $ext_lc = "zip" ] ; then
-#	unzip ${file} -d ${file%.*} || exit 1
-	unzip ${file} || exit 1
-	exit 0
-fi
+	if [ $ext_lc = "zip" ] ; then
+		unzip ${file}
+	fi
 
-exit 1
+	if [ $ext_lc = "7z" ] ; then
+	        7z x ${file}
+	fi 
+done
+
+exit 0
