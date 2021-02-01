@@ -5,7 +5,7 @@ CMDNAME=`basename $0`
 
 ##
 usage_exit(){
-        echo "Usage : ${CMDNAME} [directory | archive file]"
+        echo "Usage : ${CMDNAME} [-d:create directory] [directory | archive file]"
         exit 1
 }
 
